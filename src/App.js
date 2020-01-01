@@ -1,8 +1,13 @@
 import React from 'react';
+import { useSpring, animated } from 'react-spring';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const props = useSpring({
+    to: { transform: 'translateX(0)', opacity: 1 },
+    from: { transform: 'translateX(100%)', opacity: 0 },
+  });
   return (
     <div className="App">
       <header className="App-header">
@@ -10,14 +15,15 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
+        <animated.a
+          style={props}
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </animated.a>
       </header>
     </div>
   );
