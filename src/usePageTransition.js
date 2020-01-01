@@ -1,8 +1,17 @@
 import { useTransition } from 'react-spring';
 
+export const directionType = {
+  prev: 'PREV',
+  next: 'NEXT',
+};
+
 function usePageTransition(state, direction) {
   const translateX =
-    direction === 'PREV' ? '-50px' : direction === 'NEXT' ? '50px' : 0;
+    direction === directionType.prev
+      ? '-50px'
+      : direction === directionType.next
+      ? '50px'
+      : 0;
 
   return useTransition(state, item => item, {
     config: { duration: 100 },

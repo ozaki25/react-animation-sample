@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
-import usePageTransition from './usePageTransition';
+import usePageTransition, { directionType } from './usePageTransition';
 
 const Container = styled.div`
   padding: 15px;
@@ -26,12 +26,12 @@ function App() {
 
   const onClickPrev = () => {
     setBaseIndex(prevIndex => prevIndex - 7);
-    setDirection('PREV');
+    setDirection(directionType.prev);
   };
 
   const onClickNext = () => {
     setBaseIndex(prevIndex => prevIndex + 7);
-    setDirection('NEXT');
+    setDirection(directionType.next);
   };
 
   return (
