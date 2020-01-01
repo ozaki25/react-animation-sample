@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useTransition, animated } from 'react-spring';
+import { animated } from 'react-spring';
 import styled from 'styled-components';
+import usePageTransition from './usePageTransition';
 
 const Container = styled.div`
   padding: 15px;
@@ -21,18 +22,7 @@ function App() {
   const [baseIndex, setBaseIndex] = useState(1);
   const [direction, setDirection] = useState(null);
 
-  const translateX =
-    direction === 'PREV' ? '-50px' : direction === 'NEXT' ? '50px' : 0;
-
-  const transitions = useTransition(baseIndex, item => item, {
-    config: { duration: 100 },
-    from: {
-      transform: `translateX(${translateX})`,
-      opacity: 0,
-    },
-    enter: { transform: 'translateX(0)', opacity: 1 },
-    leave: { display: 'none' },
-  });
+  const transitions = usePageTransition(baseIndex, direction);
 
   const onClickPrev = () => {
     setBaseIndex(prevIndex => prevIndex - 7);
